@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+<!-- Create beans for Simpleuser and SimpleUserList with prototype scope. -->
+<bean id="simpleUser" class="com.example.Codingninjaapplication.SimpleUser" scope="proptotype"></bean>
+<bean id="userList" class="com.example.Codingninjaapplication.SimpleUserList" scope="proptotype"></bean>
+
+<!-- Create beans for JavaInstructor and SpringInstructor -->
+<bean id="springInstructor" class="com.example.Codingninjaapplication.SpringInstructor" init-method="init" destroy-method="destroy"></bean>
+<bean id="javaInstructor" class="com.example.Codingninjaapplication.JavaInstructor" init-method="init" destroy-method="destroy"></bean>
+
+<!-- two beans for PaidCourse one with dependency JavaInstructor and the other with SpringInstructor -->
+<bean id="javaCourse" class="com.example.Codingninjaapplication.PaidCourse">
+	<constructor-arg ref="javaInstructor"></constructor-arg>
+	<constructor-arg ref="userList"></constructor-arg>
+</bean>
+<bean id="springCourse" class="com.example.Codingninjaapplication.PaidCourse">
+	<constructor-arg ref="springInstructor"></constructor-arg>
+	<constructor-arg ref="userList"></constructor-arg>
+</bean>
+
+</beans>
